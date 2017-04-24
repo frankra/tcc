@@ -1,0 +1,10 @@
+div.deleteIcon {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-size: 20px;
+}
+
+.messageRow{
+	height: 50px;
+}

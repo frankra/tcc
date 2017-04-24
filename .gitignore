@@ -1,4 +1,4 @@
 node_modules
-bower_components
+comparison/ui/bower_components
 .DS_Store
-
+.vscode
