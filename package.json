@@ -1,0 +1,18 @@
+{
+  "name": "tcc",
+  "version": "0.0.1",
+  "description": "TCC Comparison App",
+  "scripts": {
+    "test": "(cd app1; npm test) && (cd app2; npm test)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankrafael/tcc.git"
+  },
+  "author": "Rafael Frank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frankrafael/tcc/issues"
+  },
+  "homepage": "https://github.com/frankrafael/tcc#readme"
+}

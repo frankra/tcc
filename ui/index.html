@@ -1,0 +1,68 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/lib.css">
+
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
+
+	<script src="scripts/app.js"></script>
+	<title>TCC Rafael Frank - Chat</title>
+</head>
+
+<body ng-app="MessagesApp" ng-controller="MainController">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				 aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					
+				</button>
+				<a class="navbar-brand" href="#">
+					<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
+					<span>TCC Rafael Frank - Chat</span>
+				</a>
+			</div>
+		</div>
+	</nav>
+	<div class="messageRow row">
+		<div class="col-xs-0 col-md-2"></div>
+		<div class="col-xs-12 col-md-8">
+			<div class="input-group">
+				<input ng-model="newMessage.user" type="text" class="form-control" placeholder="Username">
+				<input ng-model="newMessage.text" type="text" class="form-control" placeholder="Write a Message">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" ng-click="sendMessage(newMessage)">Send</button>
+				</span>
+			</div>
+			<!-- /input-group -->
+		</div>
+		<div class="col-xs-0 col-md-2"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-0 col-md-2"></div>
+		<div class="col-xs-12 col-md-8">
+			<div>
+				<ul class="list-group">
+					<li class="list-group-item" ng-repeat="message in messages">
+						<div>
+							<div>From: {{message.user}}, {{message.date | date :'medium'}}</div>
+							<br/>
+							<div>{{message.message}}</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-xs-0 col-md-2"></div>
+	</div>
+</body>
+
+</html>
