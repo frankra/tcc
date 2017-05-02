@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "testrunner": "./node_modules/mocha/bin/mocha -w --recursive test*/*",
+    "test": "./node_modules/mocha/bin/mocha --recursive test*/*"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "mocha": "^3.3.0",
     "mock-require": "^2.0.2",
     "sinon": "^2.1.0"
   }

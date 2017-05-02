@@ -11,9 +11,7 @@ module.exports = (oApp)=>{
       super(MessageCollection);
 
       oApp.get(BASE_MESSAGES_API,this.getAll.bind(this));
-      oApp.post(BASE_MESSAGES_API,this.postNew.bind(this));
     }
-
   }
 
   return new Messages();
