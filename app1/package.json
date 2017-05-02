@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "testrunner": "./node_modules/mocha/bin/mocha -w --recursive test*/*",
-    "test": "./node_modules/mocha/bin/mocha --recursive test*/*"
+    "test": "./node_modules/mocha/bin/mocha --recursive test*/*",
+    "coverage": "istanbul cover _mocha -- --recursive -R node_modules/mocha-spec-cov-alt test/*",
+    "covreport": "open coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,9 @@
     "socket.io": "^1.7.3"
   },
   "devDependencies": {
+    "mocha-spec-cov-alt": "^1.1.1",
+    "istanbul": "^0.4.2",
+    "coveralls": "^2.11.8",
     "chai": "^3.5.0",
     "mocha": "^3.3.0",
     "mock-require": "^2.0.2",

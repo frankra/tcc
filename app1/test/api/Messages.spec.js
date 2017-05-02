@@ -19,6 +19,10 @@ describe('Messages - Tests', () => {
     Messages = require(FILE_PATH);
   });
 
+  after(()=>{
+    mock.stop('../../src/collection/Message.js');
+  });
+
   describe('Inspection', () => {
     it('Should be a function', () => {
       chai.expect(typeof Messages).to.equal('function');
