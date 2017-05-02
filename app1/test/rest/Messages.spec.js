@@ -1,7 +1,7 @@
 require('../bootstrap.js');
 
-const FILE_PATH = '../../src/api/Messages';
-const BASE_REST_API_PATH = '../../src/api/BaseRestAPI'
+const FILE_PATH = '../../src/rest/Messages';
+const BASE_REST_API_PATH = '../../src/rest/BaseRestAPI'
 let Messages;
 let oMockApp;
 

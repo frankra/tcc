@@ -9,7 +9,7 @@ module.exports = (()=>{
 
   Mongoose.connection.once('open', ()=>{ //Wait for DB connection
 
-    require('./api/Messages')(App); //Initialize Rest API
+    require('./rest/Messages')(App); //Initialize Rest API
 
     Server.listen(PORT, ()=>{
       console.log(`App without node-injectjs up and running at localhost:${PORT}`);

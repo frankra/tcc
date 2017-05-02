@@ -9,9 +9,6 @@ const oFakeSchema = {};
 describe('Message - Tests', () => {
 
   beforeEach(() => {
-    oMockApp = {
-      get: sinon.spy()
-    }
     //Mock dependencies
     oMockMongooseManager = {
       Schema: sinon.stub().returns(oFakeSchema),

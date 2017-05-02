@@ -1,19 +1,9 @@
 module.exports = (Server) => {
-  const IO = require('socket.io')(Server);
-  const MessageCollection = require('../collection/Message.js');
-  const NEW_MESSAGE = 'NEW_MESSAGE';
+  const oSocketManager = require('./SocketManager.js')(Server);
+  const oMessageHandler = require('./MessageHandler.js');
   
-  IO.on('connection', (oSocket) => {
-
-    oSocket.on(NEW_MESSAGE, (oData) => {
-      if (oData){
-        let oNewMessage = new MessageCollection(oData);
-
-        oNewMessage.save()
-        .then(oPersistedMessage=>{
-          oSocket.broadcast.emit(NEW_MESSAGE, oPersistedMessage);
-        });
-      }
-    });
+  return oSocketManager.getSocketPromise()
+  .then(oSocket=>{
+    oMessageHandler.register(oSocket);
   });
 }
