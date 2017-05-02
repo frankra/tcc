@@ -8,7 +8,8 @@
     "testrunner": "./node_modules/mocha/bin/mocha -w --recursive test*/*",
     "test": "./node_modules/mocha/bin/mocha --recursive test*/*",
     "coverage": "istanbul cover _mocha -- --recursive -R node_modules/mocha-spec-cov-alt test/*",
-    "covreport": "open coverage/lcov-report/index.html"
+    "covreport": "open coverage/lcov-report/index.html",
+    "jshint" : "./node_modules/jshint/bin/jshint src"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "mocha-spec-cov-alt": "^1.1.1",
     "istanbul": "^0.4.2",
+    "jshint": "^2.9.2",
     "coveralls": "^2.11.8",
     "chai": "^3.5.0",
     "mocha": "^3.3.0",

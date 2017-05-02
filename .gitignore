@@ -3,3 +3,4 @@ comparison/ui/bower_components
 .DS_Store
 .vscode
 npm-debug.log
+coverage
