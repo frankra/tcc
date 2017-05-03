@@ -22,7 +22,7 @@ module.exports = (() => {
         })
         .then(oPersistedMessage => {
           this._oSocket.broadcast.emit(NEW_MESSAGE, oPersistedMessage);
-        });;
+        });
     }
   }
 

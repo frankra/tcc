@@ -6,7 +6,7 @@ module.exports = (() => {
       this.oCollection = oCollection;
     }
 
-    getAll(oRes) {
+    getAll(oReq, oRes) {
       return this.oCollection.find().then(aResponse => {
         oRes.status(200).send(aResponse);
       });

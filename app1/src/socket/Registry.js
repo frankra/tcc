@@ -3,7 +3,7 @@ module.exports = (Server) => {
   const oMessageHandler = require('./MessageHandler.js');
   
   return oSocketManager.getSocketPromise()
-  .then(oSocket=>{
+  .then(oSocket=>{    
     oMessageHandler.register(oSocket);
   });
 }

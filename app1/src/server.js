@@ -8,14 +8,14 @@ module.exports = (()=>{
   const PORT = 3000;
 
   Mongoose.connection.once('open', ()=>{ //Wait for DB connection
-
     require('./rest/Messages')(App); //Initialize Rest API
 
     Server.listen(PORT, ()=>{
       console.log(`App without node-injectjs up and running at localhost:${PORT}`);
     });
     App.use(Express.static(__dirname + '/../../ui/')); //Serve UI
-
+   
     require('./socket/Registry.js')(Server);
+   
   });
 })(); 

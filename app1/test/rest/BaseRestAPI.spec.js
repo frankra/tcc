@@ -20,6 +20,7 @@ describe("BaseRestAPI - Tests", () => {
       let aMockResponse = [];
 
       let oMockRes;
+      let oMockReq = {};
 
       beforeEach(() => {
         oMockCollection = {
@@ -37,7 +38,7 @@ describe("BaseRestAPI - Tests", () => {
       });
 
       it("Should retrieve all entities from the managed Collection", (done) => {
-        let oPromise = oTestInstance.getAll(oMockRes);
+        let oPromise = oTestInstance.getAll(oMockReq, oMockRes);
 
         oPromise.then(() => {
           chai.expect(oMockCollection.find.callCount).to.equal(1);//called once
