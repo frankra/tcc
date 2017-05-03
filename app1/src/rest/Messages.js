@@ -10,8 +10,9 @@ module.exports = (oApp)=>{
     constructor(){
       super(MessageCollection);
 
-      oApp.get(BASE_MESSAGES_API,this.getAll.bind(this));
+      oApp.get(BASE_MESSAGES_API, this.getAll.bind(this));
     }
+    
   }
 
   return new Messages();

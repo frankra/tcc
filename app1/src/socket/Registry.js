@@ -1,9 +1,17 @@
 module.exports = (Server) => {
-  const oSocketManager = require('./SocketManager.js')(Server);
   const oMessageHandler = require('./MessageHandler.js');
-  
-  return oSocketManager.getSocketPromise()
-  .then(oSocket=>{    
-    oMessageHandler.register(oSocket);
-  });
+  const IO = require('socket.io')(Server);
+
+  class Registry {
+
+    constructor() {
+      IO.on('connection', this.registerHandlers);
+    }
+
+    registerHandlers(oSocket) {
+      oMessageHandler.register(oSocket);
+    }
+  }
+
+  return new Registry();
 }

@@ -2,9 +2,14 @@
   "name": "app2",
   "version": "0.0.1",
   "description": "Application with DI framework",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "testrunner": "./node_modules/mocha/bin/mocha -w --recursive test*/*",
+    "test": "./node_modules/mocha/bin/mocha --recursive test*/*",
+    "coverage": "istanbul cover _mocha -- --recursive -R node_modules/mocha-spec-cov-alt test/*",
+    "covreport": "open coverage/lcov-report/index.html",
+    "jshint": "./node_modules/jshint/bin/jshint src"
   },
   "repository": {
     "type": "git",
@@ -15,5 +20,21 @@
   "bugs": {
     "url": "https://github.com/frankrafael/tcc/issues"
   },
-  "homepage": "https://github.com/frankrafael/tcc#readme"
+  "homepage": "https://github.com/frankrafael/tcc#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.8.7",
+    "node-injectjs": "^2.0.1",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "mocha-spec-cov-alt": "^1.1.1",
+    "istanbul": "^0.4.2",
+    "jshint": "^2.9.2",
+    "coveralls": "^2.11.8",
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "mock-require": "^2.0.2",
+    "sinon": "^2.1.0"
+  }
 }

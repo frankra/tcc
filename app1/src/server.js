@@ -16,6 +16,5 @@ module.exports = (()=>{
     App.use(Express.static(__dirname + '/../../ui/')); //Serve UI
    
     require('./socket/Registry.js')(Server);
-   
   });
 })(); 

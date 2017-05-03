@@ -5,8 +5,8 @@ module.exports = (() => {
   class MessageHandler {
 
     register(oSocket) {
-      oSocket.on(NEW_MESSAGE, this.handleNewMessage.bind(this));
       this._oSocket = oSocket;
+      oSocket.on(NEW_MESSAGE, this.handleNewMessage.bind(this));
     }
 
     handleNewMessage(oData) {
@@ -21,6 +21,7 @@ module.exports = (() => {
           }
         })
         .then(oPersistedMessage => {
+          //console.log('persist')
           this._oSocket.broadcast.emit(NEW_MESSAGE, oPersistedMessage);
         });
     }
