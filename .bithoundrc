@@ -1,6 +1,7 @@
 {
   "ignore": [
-    "test/**"
+    "app1/test/**",
+    "app2/test/**"
   ],
   "critics": {
     "lint": {
