@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "TCC Comparison App",
   "scripts": {
-    "test": "(cd app1; npm test) && (cd app2; npm test)"
+    "test": "(cd app1; npm test) && (cd app2; npm test)",
+    "install": "(cd app1; npm install) && (cd app2; npm install) && (cd ui; bower install)"
   },
   "repository": {
     "type": "git",

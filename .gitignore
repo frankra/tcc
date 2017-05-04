@@ -1,5 +1,5 @@
 node_modules
-comparison/ui/bower_components
+bower_components
 .DS_Store
 .vscode
 npm-debug.log
