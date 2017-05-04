@@ -16,5 +16,4 @@ module.exports = (()=>{
       console.log(`App with node-injectjs up and running at localhost:${PORT}`);
     });
   });
-
 })(); 

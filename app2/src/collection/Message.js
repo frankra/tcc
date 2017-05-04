@@ -13,7 +13,6 @@ module.exports = done => {
         default: Date.now
       }
     });
-
     done(Mongoose.model('Message', Schema));
   });
 };

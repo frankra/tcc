@@ -1,3 +1,4 @@
+return 
 require('../bootstrap.js');
 
 const FILE_PATH = "../../src/rest/BaseRestAPI";
