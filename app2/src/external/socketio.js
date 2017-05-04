@@ -4,5 +4,5 @@ module.exports = done => {
     'tcc.src.external.server'
   ],(Server)=>{
     done(require('socket.io')(Server));
-  })
+  });
 };

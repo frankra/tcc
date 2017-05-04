@@ -6,5 +6,5 @@ module.exports = done => {
     'tcc.src.external.app'
   ],(HTTP, App)=>{
     done(HTTP.createServer(App));
-  })
+  });
 };

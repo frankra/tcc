@@ -1,4 +1,6 @@
 module.exports = done => {
+  "use strict";
+  
   const NEW_MESSAGE = 'NEW_MESSAGE';
 
   define([

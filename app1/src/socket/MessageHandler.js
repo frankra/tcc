@@ -1,4 +1,6 @@
 module.exports = (() => {
+  "use strict";
+  
   const NEW_MESSAGE = 'NEW_MESSAGE';
   const Message = require('../collection/Message.js');
 

@@ -1,5 +1,6 @@
 module.exports = done => {
-
+  "use strict";
+  
   define([
     'tcc.src.external.socketio',
     'tcc.src.socket.MessageHandler'

@@ -9,5 +9,5 @@ module.exports = done => {
     App.use(Express.static(__dirname + '/../../../ui/')); //Serve UI
     
     done(App);
-  })
+  });
 };

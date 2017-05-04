@@ -4,7 +4,8 @@
   "description": "TCC Comparison App",
   "scripts": {
     "test": "(cd app1; npm test) && (cd app2; npm test)",
-    "install": "(cd app1; npm install) && (cd app2; npm install) && (cd ui; npm install)"
+    "install": "(cd app1; npm install) && (cd app2; npm install) && (cd ui; npm install)",
+    "jshint":"(cd app1; npm run jshint) && (cd app2; npm run jshint)"
   },
   "repository": {
     "type": "git",
