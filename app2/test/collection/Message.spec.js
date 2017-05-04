@@ -14,10 +14,6 @@ describe('Message - Tests', () => {
     injectjs.core.Import.setModule('tcc.src.core.MongooseManager', oFakeMongooseManager);
   });
 
-  after(() => {
-    injectjs.core.Import._mPathTree = {};
-  });
-
   describe('Inspection', () => {
     it('Should be a Mongoose Model', (done) => {
       define([
