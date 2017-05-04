@@ -1,61 +1,72 @@
-return
 require('../bootstrap.js');
 
-const FILE_PATH = '../../src/rest/Messages';
-const BASE_REST_API_PATH = '../../src/rest/BaseRestAPI'
 let Messages;
-let oMockApp;
+let oFakeApp;
+let oFakeMessageCollection;
 
 describe('Messages - Tests', () => {
 
-  beforeEach(() => {
-    oMockApp = {
+  before(() => {
+    //Create fake dependencies 
+    oFakeApp = {
       get: sinon.spy()
     }
-    //Mock dependencies
-    mock('../../src/collection/Message.js', {
+    oFakeMessageCollection = {
       find: sinon.stub().returns(Promise.resolve())
-    });
+    }
 
-    Messages = require(FILE_PATH);
+    //Set fake dependencies
+    injectjs.core.Import.setModule('tcc.src.collection.Message', oFakeMessageCollection);
+    injectjs.core.Import.setModule('tcc.src.external.app', oFakeApp);
+
   });
 
-  after(()=>{
-    mock.stop('../../src/collection/Message.js');
-  });
 
   describe('Inspection', () => {
-    it('Should be a function', () => {
-      chai.expect(typeof Messages).to.equal('function');
+    it('Should be an Object (Singleton)', (done) => {
+      define([
+        'original.tcc.src.rest.Messages'
+      ], Messages => {
+        chai.expect(typeof Messages).to.equal('object');
+        done();
+      });
     });
-    it('Should fail on execution if the App instance is not provided', () => {
-      chai.expect(() => {
-        let oObj = Messages();
-      }).to.throw(Error);
+    it('Should be a child of BaseRestAPI', (done) => {
+      define([
+        'original.tcc.src.rest.Messages',
+        'tcc.src.rest.BaseRestAPI',
+      ], (Messages, BaseRestAPI) => {
+        
+        chai.expect(Messages instanceof BaseRestAPI).to.equal(true);
+        done();
+      });
     });
-    it('Should return a Messages instance if the App instance is provided', () => {
-      let oInstance = Messages(oMockApp);
-      chai.expect(typeof oInstance).to.equal('object');
+    it('Should set the Message Collection at the super constructor', (done) => {
+      define([
+        'original.tcc.src.rest.Messages',
+        'original.tcc.src.rest.BaseRestAPI',
+      ], (Messages, BaseRestAPI) => {
+        chai.expect(
+          Messages.oCollection === oFakeMessageCollection
+        ).to.equal(true);
+        done();
+      });
     });
-    it('Should be a child of BaseRestAPI', () => {
-      let oInstance = Messages(oMockApp);
-      let BaseRestAPI = require(BASE_REST_API_PATH);
+    it('Should register the getAll API to the App.get function', (done) => {
+      define([
+        'original.tcc.src.rest.Messages',
+        'original.tcc.src.rest.BaseRestAPI',
+      ], (Messages, BaseRestAPI) => {
+        let sExpectedPath = '/api/Messages';
 
-      chai.expect(oInstance instanceof BaseRestAPI).to.equal(true);
-    });
-    it('Should register the getAll API to the App.get function', () => {
-      let oInstance = Messages(oMockApp);
-      let BaseRestAPI = require(BASE_REST_API_PATH);
-      let sExpectedPath = '/api/Messages';
+        chai.expect(oFakeApp.get.callCount).to.equal(1);
+        chai.expect(oFakeApp.get.args[0][0]).to.equal(sExpectedPath);
 
-      chai.expect(oMockApp.get.callCount).to.equal(1);
-      chai.expect(oMockApp.get.args[0][0]).to.equal(sExpectedPath);
-
-      chai.expect(
-        oInstance.getAll.constructor === oMockApp.get.args[0][1].constructor
-      ).to.equal(true);
+        chai.expect(
+          Messages.getAll.constructor === oFakeApp.get.args[0][1].constructor
+        ).to.equal(true);
+        done();
+      });
     });
   });
-
-
 });
