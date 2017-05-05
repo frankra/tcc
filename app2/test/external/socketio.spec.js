@@ -21,7 +21,7 @@ describe('SocketIO - Tests', () => {
   describe('Inspection', () => {
     it('Should create the SocketIO', (done) => {
       define([
-        'original.tcc.src.external.SocketIO'
+        'original.tcc.src.external.socketio'
       ], SocketIO => {
         chai.expect(fnFakeSocketIO.callCount).to.equal(1);
         chai.expect(fnFakeSocketIO.args[0][0]).to.equal(oFakeServer);
@@ -30,7 +30,7 @@ describe('SocketIO - Tests', () => {
     });
     it('Should return an instance of the SocketIO', (done) => {
       define([
-        'original.tcc.src.external.SocketIO'
+        'original.tcc.src.external.socketio'
       ], SocketIO => {
         chai.expect(SocketIO).to.equal(oFakeSocketIO);
         done();
