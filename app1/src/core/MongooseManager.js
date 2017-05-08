@@ -3,7 +3,7 @@ module.exports = (()=>{
   
   //Singleton
   const Mongoose = require('mongoose');
-  Mongoose.connect('mongodb://localhost/awdaw');
+  Mongoose.connect('mongodb://localhost/tcc');
   Mongoose.Promise = global.Promise; //Use native promises
 
   return Mongoose;
