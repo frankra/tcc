@@ -23,7 +23,6 @@ module.exports = (() => {
           }
         })
         .then(oPersistedMessage => {
-          //console.log('persist')
           this._oSocket.broadcast.emit(NEW_MESSAGE, oPersistedMessage);
         });
     }

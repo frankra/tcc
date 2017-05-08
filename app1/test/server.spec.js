@@ -3,10 +3,7 @@ require('./bootstrap.js');
 
 const FILE_PATH = '../src/server.js';
 let Server;
-let fnFakeExpress;
-let oFakeApp;
 let oFakeServer;
-let oFakeHTTP;
 let oFakeMongooseManager;
 let fnFakeMessages;
 let fnFakeRegistry;
@@ -16,27 +13,10 @@ describe('Server - Tests', () => {
 
   beforeEach(() => {
     //Create fake dependencies
-    oFakeApp = {
-      use: sinon.stub()
-    }
-
-    fnFakeExpress = sinon.stub().returns(oFakeApp);
-    fnFakeExpress.static = sinon.stub().returns(fnStaticMiddleware);
-
-    oFakeSocketIO = {
-      on: sinon.stub()
-    }
-
     fnFakeMessages = sinon.spy();
-
-    fnFakeSocketIO = sinon.stub().returns(oFakeSocketIO);
 
     oFakeServer = {
       listen: sinon.spy()
-    }
-
-    oFakeHTTP = {
-      createServer: sinon.stub().returns(oFakeServer)
     }
 
     fnFakeRegistry = sinon.stub();
@@ -47,11 +27,8 @@ describe('Server - Tests', () => {
       }
     }
 
-
-
     //Set fake dependencies
-    mock('express', fnFakeExpress);
-    mock('http', oFakeHTTP);
+    mock('../src/external/server.js', oFakeServer);
     mock('../src/core/MongooseManager', oFakeMongooseManager);
     mock('../src/rest/Messages', fnFakeMessages);
     mock('../src/socket/Registry.js', fnFakeRegistry);
@@ -81,7 +58,7 @@ describe('Server - Tests', () => {
       });
 
       it('Should initialize the Messages Rest API', () => {
-        chai.expect(fnFakeMessages.callCount).to.equal(1);
+        chai.expect(require.callCount).to.equal(1);
         chai.expect(fnFakeMessages.args[0][0]).to.equal(oFakeApp);
       });
 

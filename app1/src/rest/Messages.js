@@ -1,7 +1,8 @@
-module.exports = (oApp)=>{
+module.exports = (()=>{
   "use strict";
   
   //Require super class
+  const App = require('../external/app.js');
   const BaseRestAPI = require('./BaseRestAPI.js');
   const MessageCollection = require('../collection/Message.js');
   const BASE_MESSAGES_API = "/api/Messages";
@@ -10,10 +11,9 @@ module.exports = (oApp)=>{
     constructor(){
       super(MessageCollection);
 
-      oApp.get(BASE_MESSAGES_API, this.getAll.bind(this));
+      App.get(BASE_MESSAGES_API, this.getAll.bind(this));
     }
-    
   }
 
   return new Messages();
-};
+})();

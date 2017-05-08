@@ -21,6 +21,7 @@ describe('Registry - Tests', () => {
       register: sinon.spy()
     }
     mock('../../src/socket/MessageHandler.js', oFakeMessageHandler);
+    mock('../../src/external/server.js', oFakeServer);
 
     Registry = mock.reRequire(FILE_PATH);
   });
@@ -28,34 +29,29 @@ describe('Registry - Tests', () => {
   after(() => {
     mock.stop('socket.io');
     mock.stop('../../src/socket/MessageHandler.js');
+    mock.stop('../../src/external/server.js');
   });
 
   describe('Inspection', () => {
     it('Should initialize the Socket IO dependency with the Server instance', () => {
-      Registry(oFakeServer);
 
       chai.expect(fnFakeSocketIO.callCount).to.equal(1);
       chai.expect(fnFakeSocketIO.args[0][0]).to.equal(oFakeServer);
     });
     it('Should attach the registerHandlers API on the "connection" callback', () => {
-      let oInstance = Registry(oFakeServer);
 
       chai.expect(oFakeSocketIO.on.callCount).to.equal(1);
       chai.expect(oFakeSocketIO.on.args[0][0]).to.equal("connection");
-      chai.expect(oFakeSocketIO.on.args[0][1]).to.equal(oInstance.registerHandlers);
+      chai.expect(oFakeSocketIO.on.args[0][1]).to.equal(Registry.registerHandlers);
     });
-    it('Should be a function', () => {
-      chai.expect(typeof Registry).to.equal("function");
-    });
-    it('Should return a Registry instance if executed', () => {
-      chai.expect(typeof Registry(oFakeServer)).to.equal("object");
+    it('Should be an object', () => {
+      chai.expect(typeof Registry).to.equal("object");
     });
   });
 
   describe('API', () => {
     describe('registerHandlers', () => {
       it('Should register all Socket All Handlers', () => {
-        Registry(oFakeServer);
 
         //Fake 'connection' callback call
         oFakeSocketIO.on.args[0][1](oFakeSocket);

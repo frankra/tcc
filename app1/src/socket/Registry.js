@@ -1,6 +1,7 @@
-module.exports = (Server) => {
+module.exports = (() => {
   "use strict";
 
+  const Server = require('../external/server.js');
   const oMessageHandler = require('./MessageHandler.js');
   const IO = require('socket.io')(Server);
 
@@ -16,4 +17,4 @@ module.exports = (Server) => {
   }
 
   return new Registry();
-};
+})();
