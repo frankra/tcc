@@ -12,11 +12,8 @@ module.exports = (()=>{
   App.use(Express.static(__dirname + '/../../ui/')); //Serve UI
 
   Mongoose.connection.once('open', ()=>{ //Wait for DB connection
-    
-
     Server.listen(PORT, ()=>{
       console.log(`App without node-injectjs up and running at localhost:${PORT}`);
     });
-   
   });
 })(); 
