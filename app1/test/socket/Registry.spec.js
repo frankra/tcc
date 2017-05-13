@@ -14,14 +14,13 @@ describe('Registry - Tests', () => {
     oFakeSocketIO = {
       on: sinon.stub()
     }
-    fnFakeSocketIO = sinon.stub().returns(oFakeSocketIO);
-    mock('socket.io', fnFakeSocketIO);
 
     oFakeMessageHandler = {
       register: sinon.spy()
     }
     mock('../../src/socket/MessageHandler.js', oFakeMessageHandler);
     mock('../../src/external/server.js', oFakeServer);
+    mock('../../src/external/socketio.js', oFakeSocketIO);
 
     Registry = mock.reRequire(FILE_PATH);
   });
@@ -30,14 +29,10 @@ describe('Registry - Tests', () => {
     mock.stop('socket.io');
     mock.stop('../../src/socket/MessageHandler.js');
     mock.stop('../../src/external/server.js');
+    mock.stop('../../src/external/socketio.js');
   });
 
   describe('Inspection', () => {
-    it('Should initialize the Socket IO dependency with the Server instance', () => {
-
-      chai.expect(fnFakeSocketIO.callCount).to.equal(1);
-      chai.expect(fnFakeSocketIO.args[0][0]).to.equal(oFakeServer);
-    });
     it('Should attach the registerHandlers API on the "connection" callback', () => {
 
       chai.expect(oFakeSocketIO.on.callCount).to.equal(1);
