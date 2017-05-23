@@ -1,21 +1,21 @@
 
 require('./bootstrap.js');
 
-const FILE_PATH = '../src/server.js';
-let Server;
-let oFakeServer;
+const FILE_PATH = '../src/main.js';
+let Main;
+let oFakeMain;
 let oFakeMongooseManager;
 let fnFakeMessages;
 let fnFakeRegistry;
 const fnStaticMiddleware = () => { };
 
-describe('Server - Tests', () => {
+describe('Main - Tests', () => {
 
   beforeEach(() => {
     //Create fake dependencies
     fnFakeMessages = sinon.spy();
 
-    oFakeServer = {
+    oFakeMain = {
       listen: sinon.spy()
     }
 
@@ -28,12 +28,12 @@ describe('Server - Tests', () => {
     }
 
     //Set fake dependencies
-    mock('../src/external/server.js', oFakeServer);
+    mock('../src/external/server.js', oFakeMain);
     mock('../src/core/MongooseManager', oFakeMongooseManager);
     mock('../src/rest/Messages', fnFakeMessages);
     mock('../src/socket/Registry.js', fnFakeRegistry);
 
-    Server = mock.reRequire(FILE_PATH);
+    Main = mock.reRequire(FILE_PATH);
   });
 
   after(() => {
@@ -58,15 +58,15 @@ describe('Server - Tests', () => {
       });
 
       it('Should attach the listen event to the server instance', () => {
-        chai.expect(oFakeServer.listen.callCount).to.equal(1);
-        chai.expect(oFakeServer.listen.args[0][0]).to.equal(3000);
-        chai.expect(typeof oFakeServer.listen.args[0][1]).to.equal('function');
+        chai.expect(oFakeMain.listen.callCount).to.equal(1);
+        chai.expect(oFakeMain.listen.args[0][0]).to.equal(3000);
+        chai.expect(typeof oFakeMain.listen.args[0][1]).to.equal('function');
       });
       
       describe('Once server is listening', () => {
         before(() => {
           sinon.spy(console,'log');
-          oFakeServer.listen.args[0][1]();
+          oFakeMain.listen.args[0][1]();
         });
         after(()=>{
           console.log.restore();

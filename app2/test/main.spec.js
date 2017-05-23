@@ -1,18 +1,18 @@
 require('./bootstrap.js');
 
-let Server;
-let oFakeServer;
+let Main;
+let oFakeMain;
 const oFakeMessages = {};
 const oFakeRegistry = {};
 let fnFakeNodeInjectjs;
 let oFakeInjectjs;
 let oFakeImport;
 
-describe('Server - Tests', () => {
+describe('Main - Tests', () => {
 
   before(() => {
     //Create fake dependencies
-    oFakeServer = {
+    oFakeMain = {
       listen: sinon.stub()
     }
 
@@ -29,7 +29,7 @@ describe('Server - Tests', () => {
     fnFakeNodeInjectjs = sinon.stub().returns(oFakeInjectjs);
     //Set fake dependencies
 
-    injectjs.core.Import.setModule('tcc.src.external.server', oFakeServer);
+    injectjs.core.Import.setModule('tcc.src.external.server', oFakeMain);
     injectjs.core.Import.setModule('tcc.src.rest.Messages', oFakeMessages);
     injectjs.core.Import.setModule('tcc.src.socket.Registry', oFakeRegistry);
 
@@ -37,7 +37,7 @@ describe('Server - Tests', () => {
     
     sinon.spy(global,'define');
     
-    Server = require('../src/server.js');
+    Main = require('../src/main.js');
   });
 
   after(() => {
@@ -70,14 +70,14 @@ describe('Server - Tests', () => {
 
     describe('Once Dependencies are provided', () => {
       it('Should attach the listen event to the server instance', () => {
-        chai.expect(oFakeServer.listen.callCount).to.equal(1);
-        chai.expect(oFakeServer.listen.args[0][0]).to.equal(3000);
-        chai.expect(typeof oFakeServer.listen.args[0][1]).to.equal('function');
+        chai.expect(oFakeMain.listen.callCount).to.equal(1);
+        chai.expect(oFakeMain.listen.args[0][0]).to.equal(3000);
+        chai.expect(typeof oFakeMain.listen.args[0][1]).to.equal('function');
       });
       describe('Once server is listening', () => {
         before(() => {
           sinon.spy(console, 'log');
-          oFakeServer.listen.args[0][1]();
+          oFakeMain.listen.args[0][1]();
         });
         after(() => {
           console.log.restore();
