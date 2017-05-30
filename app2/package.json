@@ -2,9 +2,9 @@
   "name": "app2",
   "version": "0.0.1",
   "description": "Application with DI framework",
-  "main": "server.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node src/main.js",
     "testrunner": "./node_modules/mocha/bin/mocha -w --recursive test*/*",
     "test": "./node_modules/mocha/bin/mocha --recursive test*/*",
     "coverage": "istanbul cover _mocha -- --recursive -R node_modules/mocha-spec-cov-alt test/*",
